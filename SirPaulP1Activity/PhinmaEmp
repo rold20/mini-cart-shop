@@ -1,0 +1,33 @@
+public class PhinmaEmp{
+    public static void main (String[] args){
+        Scanner in =new Scanner(System.in);
+
+        System.out.print("Enter Employee Name:");
+        String name = in.nextline();
+
+        System.out.print("\nEmployee Types:\n F - Full time\n P - Part time");
+        System.out.print("Enter Employee Type:");
+        String type = in.nextLine();
+        if (type.compare Tolfnore Case ("F") == 0){
+            FulltimeEmployee = ne FulltimeEmployee(name);
+
+            System.out.print("\nEnter MonthlySalary:");
+            employee.setMonthlySalary(in.nextDouble());
+
+            System.out.print(employee);
+        }   else if(type.compareTolognoreCase("P") == 0){
+            PartTimeEmployee employee = new PartTimeEmployee(name);
+
+            System.out.print("\nEnter Rate Per Hour:");
+            double rate = in.nextDouble();
+            
+            System.out.print("\nEnter Number of Hours Worked:");
+            employee.setWage(rate, in.nextlnt());
+
+            System.out.println(employee);
+        }   else{
+            System.out.println("Error: Ivalid  Employee Type");
+        }
+        }
+        }
+    

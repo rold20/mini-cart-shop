@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTP-8"/>
+        <!--Sample Code by: Dr. Fuentes-->
+        <title>Mini Cart Shop</title>
+        <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://unpkg.com/@babe/standalone/babel.min.js"></script>
+    </head>
+
+    <body>
+        <div id="root"></div>
+
+        <script type="text/babel">
+            const users = ["Moe", "Kol", "Tay", "Pu"];
+            const passwords = ["uglyduck", "chicken", "fiesta", "scissor"];
+            const items = [
+                {name: "Nike Shoes", price: 300},
+                {name: "Nike Shirt", price: 150},
+                {name: "Red USB", price: 20},
+            ];
+
+            function MiniCartShop(){
+                //-- Create your variable here as state
+                const [username, setUsername] = React.useState("");
+                const [password, setPassword] = React.useState("");
+                const [cartItems, setCartItems] = React.useState([]);
+                const [totalPrice, setTotalPrice] = React.useState(0);
+                const [loggedIn, setLoggedIn] = React.useState(false);
+
+                function handleLogin(e){
+                    e.preventDefault();
+
+                    if(users.includes(username) && passswords.includes(password)){
+                        console.log('Logged in with username ${username} and password ${password}');
+                        setLoggedln(true);
+                    }else{
+                        alert("OPPS YOU ARE NOT A MEMBER OF THIS CARTSHOP");
+                    }
+                }
+
+                function handleAddToCart(item){
+                    const newItem = {name: item.name, price: item.price};
+                    setCartItems([...cartItems, newItem]);
+                    setTotalPrice(totalPrice + item.price);
+                }
+
+                return(
+                    <div>
+                        {!loggedln?(
+                            <form onSubmit={handleLogin}>
+                                <label>
+                                    Username:
+                                    <input
+                                        type = "text"
+                                        value = {username}
+                                        onChange = {(e) => setUsername(e.target.value)}
+                                    />
+                                </label>
+                                <br/>
+                                <label>
+                                    Password:
+                                    <input
+                                        type = "password"
+                                        value = {password}
+                                        onChange = {(e) => setPassword(e.target.value)}
+                                    />
+                                </label>
+                                <br/>
+                                <button type="submit">Log in</button>
+                            </form>
+                        ):(
+                            <div>
+                                <h2>Available Items</h2>
+                                <ul>
+                                    {items.map(item, index) => (
+                                        <li key={index}>
+                                            {item.name} - php{item.price}{""}
+                                            <button onClick={() => handleAddToCart(item)}>Add to Cart</button>
+                                        </li>
+                        ))}
+                                </ul>
+                                <h2>Cart</h2>
+                                <ul>
+                                    {cartItems.map((item, index) => ( 
+                                        <li key={index}>
+                                            {item.name} - ${item.price}
+                                        </li>
+                                    ))}
+                                </ul>
+                                <h2>Total: ${totalPrice}</h2>
+                            </div>
+                        ):(
+                            <form onSubmit={handleLogin}>
+                                <label>
+                                    Username:
+                                    <input
+                                        type = "text"
+                                        value = {username}
+                                        onChange = {(e) => setUsername(e.target.value)}
+                                    />
+                                </label>
+                                <br/>
+                                <label>
+                                    Password:
+                                    <input
+                                        type = "password"
+                                        value = {password}
+                                        onChange = {(e) => setPassword(e.target.value)}
+                                    />
+                                </label>
+                                <br/>
+                                <button type="submit">Log in</button>
+                            </form>
+                        )}
+                        </div>
+                    );
+                    }
+                    function addToCart(item){
+                        setCartItems((prevCartItems) => [...prevCartItems, item]);
+                        setTotalPrice((prevTotalPrice) => prevTotalPrice + item,price);
+                    }
+                    ReactDOM.render(<MiniCartShop />, document.getElementById("root"));
+        </script>
+    </body>
